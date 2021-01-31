@@ -1,2 +1,8 @@
 @import "bootstrap/scss/bootstrap";
 // ~ to the front if it doesn't work
+.navbar {
+  position: sticky;
+  top: 0; /* it does not reposition right away,
+             but determines at which point it sticks */
+  z-index: 1;
+}

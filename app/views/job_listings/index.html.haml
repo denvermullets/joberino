@@ -1,3 +1,7 @@
+%div.container
+  %br
+  = "#{all_jobs.count} jobs displayed"
+%br
 - if all_jobs.any?
   %div.container
     - all_jobs.each do |single_job|

@@ -1,5 +1,6 @@
+# controller to trigger daily scrapes (temp not going to work)
 class DailyScrapesController < ApplicationController
-  def Linkedin
+  def linkedin
     url = [
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area',
       # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area&start=25',
