@@ -1,0 +1,2 @@
+class DailyScrape < ApplicationRecord
+end

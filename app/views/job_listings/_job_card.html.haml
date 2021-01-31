@@ -11,7 +11,10 @@
         %strong
           = job.employer
     %p.card-text
-      = job.employer
+      Description if applicable
     %a{ href: "#", title: "Not Interested", class: 'btn btn-primary' }
       %strong
         Not Interested
+  %div.card-footer
+    %small
+      = "Added: #{job.created_at.in_time_zone('EST').strftime("%B %d, %Y at %I:%M %p")}"

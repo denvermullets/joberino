@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :daily_scrapes
   resources :user_job_listings
   resources :job_listings
   resources :users

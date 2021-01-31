@@ -1,0 +1,2 @@
+module DailyScrapesHelper
+end
