@@ -1,0 +1,6 @@
+%div.btn.btn-secondary
+  demo - hi
+
+- if all_jobs.any?
+  - all_jobs.each do |single_job|
+    = single_job.employer
