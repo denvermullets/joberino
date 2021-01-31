@@ -5,6 +5,7 @@ class CreateUserJobListings < ActiveRecord::Migration[6.1]
       t.belongs_to :user
       t.boolean :applied
       t.boolean :save_job
+      t.boolean :ignore
 
       t.timestamps
     end

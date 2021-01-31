@@ -1,6 +1,5 @@
-%div.btn.btn-secondary
-  demo - hi
-
 - if all_jobs.any?
-  - all_jobs.each do |single_job|
-    = single_job.employer
+  %div.container
+    - all_jobs.each do |single_job|
+      = render partial: 'job_listings/job_card', locals: { job: single_job }
+      %br

@@ -1,0 +1,17 @@
+%div.card
+  %div.card-body
+    %h5.card-title
+      %a{ href: "#{job.job_url}", title: "#{job.job_title}", target: '_blank', rel:"noopener" }
+        %strong
+          = job.job_title
+    %h6.card-subtitle.mb-2.text-muted
+      = job.location
+    %h6.card-subtitle.mb-2.text-muted
+      %a{ href: "#{job.company_url}", title: "#{job.employer}", target: '_blank', rel:"noopener" }
+        %strong
+          = job.employer
+    %p.card-text
+      = job.employer
+    %a{ href: "#", title: "Not Interested", class: 'btn btn-primary' }
+      %strong
+        Not Interested
