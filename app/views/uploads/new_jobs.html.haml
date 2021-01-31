@@ -1,4 +1,6 @@
-= form_tag({action: :new_jobs}, multipart: true) do
-  = file_field_tag 'json'
-  = submit_tag 'Submit'
-
+%div.container-md
+  %br
+  %div.d-flex.justify-content-center
+    = form_tag({action: :new_jobs}, multipart: true) do
+      = file_field_tag 'json'
+      = submit_tag 'Submit'

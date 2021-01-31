@@ -4,26 +4,6 @@ class LinkedinJson < Kimurai::Base
   @engine = :selenium_chrome
   @@jobs = []
 
-  def self.process(url)
-    @start_urls = url
-    crawl!
-  end
-
-  def scrape_page
-    check_if_logged_in
-    doc = browser.current_response
-    sleep 2
-
-    while doc.css('li.jobs-search-results__list-item')[0]
-      doc = browser.current_response
-      @@jobs << strip_info(doc)
-      job_listings = doc.css('ul.jobs-search-results__list')
-      job_listings.css('li.jobs-search-results__list-item')[0].remove
-      browser.execute_script("document.querySelector('li.jobs-search-results__list-item').remove()")
-      sleep 0.2
-    end
-  end
-
   def parse(response, url:, data: {})
     scrape_page
 
@@ -32,6 +12,36 @@ class LinkedinJson < Kimurai::Base
     end
 
     response
+  end
+
+  def self.process(url)
+    @start_urls = url
+    crawl!
+  end
+
+  def scrape_page
+    skip_list = %w[senior sr lead manager director vp president principal architect]
+    check_if_logged_in
+    doc = browser.current_response
+    sleep 2
+
+    while doc.css('li.jobs-search-results__list-item')[0]
+      doc = browser.current_response
+      job = strip_info(doc)
+      # binding.pry
+      if skip_list.any? { |single_word| job[:job_title].downcase().include? single_word }
+        puts "skipping #{job[:job_title]}"
+      else
+        @@jobs << strip_info(doc)
+        puts "adding #{job[:job_title]}"
+      end
+      # @@jobs << strip_info(doc)
+      # puts 'loaded job a job'
+      job_listings = doc.css('ul.jobs-search-results__list')
+      job_listings.css('li.jobs-search-results__list-item')[0].remove
+      browser.execute_script("document.querySelector('li.jobs-search-results__list-item').remove()")
+      sleep 0.2
+    end
   end
 
   def strip_info(doc)
