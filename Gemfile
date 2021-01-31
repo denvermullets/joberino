@@ -32,8 +32,8 @@ gem 'haml'
 gem 'haml-rails'
 
 # gems needed for scraping
-gem 'kimurai'
-gem 'selenium'
+# gem 'kimurai'
+# gem 'selenium'
 
 # user stuffs
 gem 'devise', '~> 4.7', '>= 4.7.3'
