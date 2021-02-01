@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :about_us
   root to: 'job_listings#index'
 
   # resources :uploads

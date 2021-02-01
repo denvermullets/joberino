@@ -12,8 +12,9 @@
   %body
     = render partial: 'job_listings/header'
     - unless notice.nil?
-      %div.container.alert.alert-success.alert-dismissible.notice
+      %div.alert.alert-success.alert-dismissible.notice
         = notice
     - unless alert.nil?
-      %p.alert= alert
+      %div.alert.alert-warning.alert-dismissible.notice
+        = alert
     = yield
