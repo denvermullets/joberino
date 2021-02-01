@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :about_us
   root to: 'job_listings#index'
 
   # resources :uploads
-  get '/uploads', to: 'uploads#new_jobs', as: :upload
   post '/uploads', to: 'uploads#upload', as: :upload_json
+  get '/uploads', to: 'uploads#new_jobs', as: :upload
   devise_for :users
 
+  resources :about_us
   resources :daily_scrapes
   resources :user_job_listings
   resources :job_listings

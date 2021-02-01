@@ -1,7 +1,17 @@
-%div.container-md
-  %br
-  - if current_user && current_user.id == 1
-    %div.d-flex.justify-content-center
-      = form_tag({action: :new_jobs}, multipart: true) do
-        = file_field_tag 'json'
-        = submit_tag 'Submit'
+%div.container
+  %div.row
+    %div.col
+    %div.col-6
+      %br
+      - if current_user && current_user.id == 1
+        %div
+          = form_tag({action: :new_jobs}, multipart: true) do
+            = file_field_tag 'json'
+            = submit_tag 'Submit'
+
+      - if job_count && user_count
+        %br
+
+        %p= "Jobs listed: #{job_count}"
+        %p= "Users: #{user_count}"
+    %div.col
