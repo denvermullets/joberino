@@ -1,5 +1,7 @@
 ## Joberino
 
+This was previously an app that had 2 repo's and after wanting to make this a deployable version for friends to use, I just rewrote it as a singular Ruby on Rails app w/Bootstrap. It's not great, but it does what it needs to do.
+
 <!-- ![dk](https://i.imgur.com/hMfFHoj.gif) -->
 
 ## What it do
