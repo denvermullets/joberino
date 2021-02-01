@@ -4,4 +4,5 @@ class UserJobListing < ApplicationRecord
 
   scope :ignored_jobs, lambda { |user|
     where(user_id: user, ignore: true)
+  }
 end
