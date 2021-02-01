@@ -1,4 +1,3 @@
-
 %div.card
   %div.card-body
     %h5.card-title
@@ -12,9 +11,11 @@
         %strong
           = job.employer
     %p.card-text
-      Description if applicable
+      - if job.description?
+        = job.description
+      - else
+        Description not available
     = link_to 'Not Interested', user_job_listings_path(id: job.id, interest: :ignore), class: 'btn btn-primary', method: :post
-    -# = link_to job_listing_path(id: job.id, interest: :ignore), { class: 'btn btn-primary'}
   %div.card-footer
     %small
       = "Added: #{job.created_at.in_time_zone('EST').strftime("%B %d, %Y at %I:%M %p")}"
