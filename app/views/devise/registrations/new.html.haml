@@ -1,0 +1,31 @@
+%div.container
+  %div.row
+    %div.col-sm-8
+      %br
+      %h3 Sign up
+      %br
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+
+        %div.field.form-group
+          = f.label :email
+          %br
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+          -# = f.label "You can use a dummy email, just don't forget it since jobs you dismiss are tied to your account", class: 'form-text text-muted small'
+
+        %div.field.form-group
+          = f.label :password
+          - if @minimum_password_length
+            %em #{@minimum_password_length} characters minimum
+            %br
+          = f.password_field :password, autocomplete: "new-password", class: 'form-control'
+
+        %div.field
+          = f.label :password_confirmation
+          %br
+          =f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+          %br
+        %div.actions
+          = f.submit "Sign up", class: 'btn btn-primary'
+      %br
+      = render "devise/shared/links"
