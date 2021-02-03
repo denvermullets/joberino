@@ -2,6 +2,7 @@
   = link_to 'Joberino', root_path, class: 'navbar-brand'
   %div.navbar-nav
     = link_to 'About Us', about_us_path, class: 'navbar-item nav-link'
+    = link_to 'Changelog', changelog_path, class: 'navbar-item nav-link'
     - if current_user && current_user.id == 1
       = link_to 'Upload json', upload_path, class: 'navbar-item nav-link'
   %div.navbar-nav.ml-auto

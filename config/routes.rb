@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :changelogs
+  # resources :changelogs
   root to: 'job_listings#index'
 
   # resources :uploads
+  get '/changelog', to: 'changelogs#index', as: :changelog
   post '/uploads', to: 'uploads#upload', as: :upload_json
   get '/uploads', to: 'uploads#new_jobs', as: :upload
   devise_for :users
