@@ -22,28 +22,26 @@ class LinkedinJson < Kimurai::Base
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area&start=25',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area&start=50',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area&start=75',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area&start=100',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area&start=125',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=full%20stack&location=New%20York%20City%20Metropolitan%20Area&start=150',
 
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20engineer&location=New%20York%20City%20Metropolitan%20Area',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20engineer&location=New%20York%20City%20Metropolitan%20Area&start=25',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20engineer&location=New%20York%20City%20Metropolitan%20Area&start=50',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20engineer&location=New%20York%20City%20Metropolitan%20Area&start=75',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20engineer&location=New%20York%20City%20Metropolitan%20Area&start=100',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20engineer&location=New%20York%20City%20Metropolitan%20Area&start=125',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20engineer&location=New%20York%20City%20Metropolitan%20Area&start=150',
+
+      'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20developer&location=New%20York%20City%20Metropolitan%20Area',
+      'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20developer&location=New%20York%20City%20Metropolitan%20Area&start=25',
+      'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20developer&location=New%20York%20City%20Metropolitan%20Area&start=50',
+      'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20developer&location=New%20York%20City%20Metropolitan%20Area&start=75',
+      'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=software%20developer&location=New%20York%20City%20Metropolitan%20Area&start=100',
 
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=front%20end%20developer&location=New%20York%20City%20Metropolitan%20Area',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=front%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=25',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=front%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=50',
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=front%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=75',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=front%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=100',
 
       'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=junior%20end%20developer&location=New%20York%20City%20Metropolitan%20Area',
-      'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=junior%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=25',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=junior%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=50',
-      # 'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=junior%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=75'
+      'https://www.linkedin.com/jobs/search/?f_TPR=r86400&geoId=90000070&keywords=junior%20end%20developer&location=New%20York%20City%20Metropolitan%20Area&start=25'
     ]
     crawl!
   end
@@ -59,7 +57,7 @@ class LinkedinJson < Kimurai::Base
     while doc.css('li.jobs-search-results__list-item')[0]
       doc = browser.current_response
       job = strip_info(doc)
-      if skip_list.any? { |single_word| job[:job_title].downcase().include? single_word }
+      if skip_list.any? { |single_word| job[:job_title].downcase.include? single_word }
         puts "skipping #{job[:job_title]}"
       else
         @@jobs << strip_info(doc)
@@ -83,9 +81,15 @@ class LinkedinJson < Kimurai::Base
       location: single_job.css('li.job-card-container__metadata-item').text.strip.gsub(/\n/, ''),
       company_url: "https://linkedin.com#{single_job.css('a.job-card-container__company-name').attribute('href')}",
       job_board: 'linkedin',
-      job_url: "https://linkedin.com#{single_job.css('a.job-card-list__title').attribute('href')}",
+      job_url: strip_url("https://linkedin.com#{single_job.css('a.job-card-list__title').attribute('href')}"),
       salary: nil
     }
+  end
+
+  def strip_url(url)
+    old_url = url.split('/')
+
+    "#{old_url[0]}//#{old_url[2]}/#{old_url[3]}/#{old_url[4]}/#{old_url[5]}"
   end
 
   def check_if_logged_in

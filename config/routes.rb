@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :changelogs
   root to: 'job_listings#index'
 
   # resources :uploads
