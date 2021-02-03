@@ -5,4 +5,8 @@ class UserJobListing < ApplicationRecord
   scope :ignored_jobs, lambda { |user|
     where(user_id: user, ignore: true)
   }
+
+  scope :ignored_weekly, lambda { |user|
+    where(user_id: user, ignore: true, created_at: 7.days.ago..Time.now)
+  }
 end

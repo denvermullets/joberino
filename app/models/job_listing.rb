@@ -5,4 +5,5 @@ class JobListing < ApplicationRecord
   has_many :users, through: :user_job_listings
 
   scope :all_jobs, -> { JobListing.all }
+  scope :weekly, -> { where(created_at: 7.days.ago..Time.now) }
 end
