@@ -47,7 +47,7 @@ class LinkedinJson < Kimurai::Base
   end
 
   def scrape_page
-    skip_list = %w[senior sr lead manager director vp president principal architect]
+    skip_list = %w[senior sr lead manager director vp president principal architect devops firmware]
     check_if_logged_in
     doc = browser.current_response
     puts 'cooling down'
