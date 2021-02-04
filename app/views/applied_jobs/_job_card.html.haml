@@ -1,0 +1,20 @@
+%div.card
+  %div.card-body
+    %h5.card-title
+      %a{ href: "#{job.job_listing.job_url}", title: "#{job.job_listing.job_title}", target: '_blank', rel:"noopener" }
+        %strong
+          = job.job_listing.job_title
+    %h6.card-subtitle.mb-2.text-muted{style: "margin-top: -12px;"}
+      = job.job_listing.location
+    %h6.card-subtitle.mb-2.text-muted
+      %a{ href: "#{job.job_listing.company_url}", title: "#{job.job_listing.employer}", target: '_blank', rel:"noopener" }
+        %strong
+          = job.job_listing.employer
+    %p.card-text
+      - if job.job_listing.description?
+        = job.job_listing.description
+      - else
+        Description not available
+  %div.card-footer
+    %small
+      = "Applied: #{job.created_at.in_time_zone('EST').strftime("%B %d, %Y at %I:%M %p")}"

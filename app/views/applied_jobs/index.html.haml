@@ -1,0 +1,9 @@
+%div.container
+  %br
+  %h2= "#{applied_jobs.count} jobs applied to:"
+%br
+- if applied_jobs.any?
+  %div.container
+    - applied_jobs.sort_by(&:created_at).each do |single_job|
+      = render partial: 'applied_jobs/job_card', locals: { job: single_job }
+      %br

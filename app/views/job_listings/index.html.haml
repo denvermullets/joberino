@@ -1,10 +1,9 @@
 %div.container
   %br
-  -# = "#{all_jobs.count} jobs displayed from #{7.days.ago.strftime("%B %d, %Y at %I:%M %p")}"
   = "#{all_jobs.count} jobs displayed, max age is 7 days"
 %br
 - if all_jobs.any?
   %div.container
-    - all_jobs.each do |single_job|
+    - all_jobs.sort_by(&:created_at).each do |single_job|
       = render partial: 'job_listings/job_card', locals: { job: single_job }
       %br
