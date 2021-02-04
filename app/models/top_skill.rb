@@ -1,0 +1,2 @@
+class TopSkill < ApplicationRecord
+end

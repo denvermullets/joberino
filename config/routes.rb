@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :top_skills
   root to: 'job_listings#index'
 
   get '/changelog', to: 'changelogs#index', as: :changelog

@@ -1,0 +1,2 @@
+class TopSkillsController < ApplicationController
+end
