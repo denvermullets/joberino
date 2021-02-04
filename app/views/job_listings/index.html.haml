@@ -1,6 +1,6 @@
 %div.container
   %br
-  = "#{all_jobs.count} jobs displayed, max age is 7 days"
+  = "#{all_jobs.count} jobs displayed out of #{job_count} jobs posted this week"
 %br
 - if all_jobs.any?
   %div.container
