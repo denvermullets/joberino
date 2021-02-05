@@ -12,8 +12,9 @@
           %strong
             = job.employer
       - else
-        %strong
-          = job.employer
+        %a{ href: "#{job.job_url}", title: "#{job.employer}", target: '_blank', rel:"noopener" }
+          %strong
+            = job.employer
 
     %p.card-text
       - if job.description?
