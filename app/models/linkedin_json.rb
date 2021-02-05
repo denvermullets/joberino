@@ -1,6 +1,6 @@
 # scrapes linkedin
 class LinkedinJson < Kimurai::Base
-  @name = 'linkedinerino'
+  @name = 'whatsnew'
   @engine = :selenium_chrome
   @@jobs = []
 
@@ -61,7 +61,7 @@ class LinkedinJson < Kimurai::Base
       if skip_list.any? { |single_word| job[:job_title].downcase.include? single_word }
         puts "skipping #{job[:job_title]}"
       else
-        @@jobs << job
+        @@jobs << strip_info(doc)
         puts "adding #{job[:job_title]}"
       end
       job_listings = doc.css('ul.jobs-search-results__list')
@@ -97,12 +97,19 @@ class LinkedinJson < Kimurai::Base
   def check_if_logged_in
     sleep 2
     begin
-      browser.find(:css, 'a.nav__button-secondary').click
+      # puts "URL? - #{browser.current_url}"
+      # browser.find(:css, 'a.nav__button-secondary').click
+      browser.find(:css, 'a.cta-modal__primary-btn').click
       sleep 1
+      # browser.save_screenshot
+      # puts "URL? - #{browser.current_url}"
       browser.fill_in 'session_key', with: ENV['EMAIL']
       browser.fill_in 'session_password', with: ENV['PASSWORD']
       sleep 2
+      # browser.save_screenshot
       browser.find(:css, 'button.btn__primary--large').click
+      sleep 1
+      browser.save_screenshot
     rescue Capybara::ElementNotFound
       puts 'user is logged in'
     end

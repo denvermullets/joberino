@@ -1,4 +1,4 @@
-%div.card
+%div.card.mt-3
   %div.card-body
     %h5.card-title
       %a{ href: "#{job.job_url}", title: "#{job.job_title}", target: '_blank', rel:"noopener" }
@@ -21,8 +21,9 @@
         = "#{job.description.split(/\s+/, 50 + 1)[0...50].join(' ')} ..."
       - else
         Description not available
-    = link_to 'Not Interested', user_job_listings_path(id: job.id, interest: :ignore), class: 'btn btn-secondary', method: :post
-    = link_to 'Applied', user_job_listings_path(id: job.id, interest: :applied), class: 'btn btn-info', method: :post
+    %div{data: { controller: 'ignore-job'}}
+      = link_to 'Not Interested', user_job_listings_path(id: job.id, interest: :ignore), class: 'btn btn-secondary', method: :post, data: {action: 'ignore-job#hideJob', target: "ignore-job.ignoreButton" }
+      = link_to 'Applied', user_job_listings_path(id: job.id, interest: :applied), class: 'btn btn-info', method: :post
   %div.card-footer
     %span
       %small

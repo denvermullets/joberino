@@ -8,6 +8,6 @@ class UserJobListingsController < ApplicationController
       UserJobListing.create(job_listing_id: params[:id], user_id: current_user.id, applied: true, ignore: true)
     end
 
-    redirect_to request.referrer
+    # redirect_to request.referrer
   end
 end
