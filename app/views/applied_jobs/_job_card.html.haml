@@ -10,11 +10,11 @@
       %a{ href: "#{job.job_listing.company_url}", title: "#{job.job_listing.employer}", target: '_blank', rel:"noopener" }
         %strong
           = job.job_listing.employer
-    %p.card-text
-      - if job.description?
-        = "#{job.description.split(/\s+/, 50 + 1)[0...50].join(' ')} ..."
-      - else
-        Description not available
+      %p.card-text
+        - if job.job_listing.description?
+          = "#{job.job_listing.description.split(/\s+/, 50 + 1)[0...50].join(' ')} ..."
+        - else
+          Description not available
   %div.card-footer
     %small
       = "Applied: #{job.created_at.in_time_zone('EST').strftime("%B %d, %Y at %I:%M %p")}"
