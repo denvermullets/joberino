@@ -1,6 +1,6 @@
 %div.card
   %div.card-body
-    %h3.card-title
+    %h5.card-title
       %a{ href: "#{job.job_listing.job_url}", title: "#{job.job_listing.job_title}", target: '_blank', rel:"noopener" }
         %strong
           = job.job_listing.job_title
@@ -11,8 +11,8 @@
         %strong
           = job.job_listing.employer
     %p.card-text
-      - if job.job_listing.description?
-        = job.job_listing.description
+      - if job.description?
+        = "#{job.description.split(/\s+/, 50 + 1)[0...50].join(' ')} ..."
       - else
         Description not available
   %div.card-footer
