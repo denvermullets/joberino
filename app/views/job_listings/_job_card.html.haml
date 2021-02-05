@@ -7,16 +7,29 @@
     %h6.card-subtitle.mb-2.text-muted{style: "margin-top: -12px;"}
       = job.location
     %h6.card-subtitle.mb-2.text-muted
-      %a{ href: "#{job.company_url}", title: "#{job.employer}", target: '_blank', rel:"noopener" }
+      - if job.company_url.present?
+        %a{ href: "#{job.company_url}", title: "#{job.employer}", target: '_blank', rel:"noopener" }
+          %strong
+            = job.employer
+      - else
         %strong
           = job.employer
+
     %p.card-text
       - if job.description?
-        = job.description
+        = "#{job.description.split(/\s+/, 50 + 1)[0...50].join(' ')} ..."
       - else
         Description not available
     = link_to 'Not Interested', user_job_listings_path(id: job.id, interest: :ignore), class: 'btn btn-secondary', method: :post
     = link_to 'Applied', user_job_listings_path(id: job.id, interest: :applied), class: 'btn btn-info', method: :post
   %div.card-footer
-    %small
-      = "Added: #{job.created_at.in_time_zone('EST').strftime("%B %d, %Y at %I:%M %p")}"
+    %span
+      %small
+        = "Added: #{job.created_at.in_time_zone('EST').strftime("%B %d, %Y at %I:%M %p")}"
+    -# %h5.float-right
+    -#   - if job.job_board == 'linkedin'
+    -#     %span.badge.badge-primary.float-right
+    -#       LinkedIn
+    -#   - else
+    -#     %span.badge.badge-info.float-right
+    -#       Built-in-NYC
