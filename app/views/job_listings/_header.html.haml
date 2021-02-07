@@ -1,7 +1,9 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   = link_to 'Joberino', root_path, class: 'navbar-brand'
   %div.navbar-nav
-    = link_to 'Applied', applied_jobs_path, class: 'navbar-item nav-link'
+    - if user_signed_in?
+      = link_to 'Applied', applied_jobs_path, class: 'navbar-item nav-link'
+
     - if current_user && current_user.id == 1
       = link_to 'Upload json', upload_path, class: 'navbar-item nav-link'
   %div.navbar-nav.ml-auto
