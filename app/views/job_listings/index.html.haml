@@ -1,7 +1,7 @@
 %div.container
   %br
-  = "#{all_jobs.count} jobs displayed out of #{job_count} jobs posted this week"
-- if all_jobs.any?
-  %div.container
+  %p.job-count
+    = "#{all_jobs.count} jobs displayed out of #{job_count} jobs posted this week"
+  - if all_jobs.any?
     - all_jobs.sort_by(&:created_at).each do |single_job|
       = render partial: 'job_listings/job_card', locals: { job: single_job }
