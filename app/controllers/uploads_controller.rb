@@ -11,6 +11,6 @@ class UploadsController < ApplicationController
     jobs = JSON.parse(File.read(uploaded_io))
     jobs.map { |job| JobListing.create(job) }
 
-    render :new_jobs, locals: { job_count: JobListing.count, user_count: User.count }
+    render :new_jobs, locals: { job_count: JobListing.count, all_users: User.all, job_actions: UserJobListing.count }
   end
 end

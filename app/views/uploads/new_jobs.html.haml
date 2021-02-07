@@ -14,6 +14,7 @@
 
           %p= "Jobs listed: #{job_count}"
           %p= "Users: #{all_users.count}"
+          %p= "Job Actions: #{job_actions}"
           - all_users.each do |user|
             = "#{user.id} - #{user.email} - #{user.created_at.in_time_zone('EST').strftime("%B %d, %Y")}"
             %br
