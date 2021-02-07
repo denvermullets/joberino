@@ -7,7 +7,8 @@ class UserJobListing < ApplicationRecord
   }
 
   scope :ignored_weekly, lambda { |user|
-    where(user_id: user, ignore: true, created_at: 7.days.ago..Time.now)
+    # where(user_id: user, ignore: true, created_at: 7.days.ago..Time.now)
+    where(user_id: user, ignore: true, created_at: Date.today.at_beginning_of_week..Time.now)
   }
 
   scope :applied, lambda { |user|

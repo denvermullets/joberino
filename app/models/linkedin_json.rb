@@ -92,6 +92,7 @@ class LinkedinJson < Kimurai::Base
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def strip_url(url)
+    # strips linkedin excess url noise
     old_url = url.split('/')
 
     "#{old_url[0]}//#{old_url[2]}/#{old_url[3]}/#{old_url[4]}/#{old_url[5]}"
