@@ -3,7 +3,7 @@ class UploadsController < ApplicationController
   before_action :authenticate_user!
 
   def new_jobs
-    render :new_jobs, locals: { job_count: JobListing.count, user_count: User.count }
+    render :new_jobs, locals: { job_count: JobListing.count, all_users: User.all, job_actions: UserJobListing.count }
   end
 
   def upload

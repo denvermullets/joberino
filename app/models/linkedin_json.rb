@@ -46,9 +46,12 @@ class LinkedinJson < Kimurai::Base
   end
   # rubocop:enable Metrics/MethodLength
 
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def scrape_page
-    skip_list = %w[senior sr lead manager director vp president principal architect devops firmware forklift warehouse]
+    skip_list = %w[
+      senior sr lead manager director vp president principal architect devops firmware forklift warehouse
+      head
+    ]
     check_if_logged_in
     doc = browser.current_response
     puts 'cooling down'
@@ -86,7 +89,7 @@ class LinkedinJson < Kimurai::Base
       salary: nil
     }
   end
-  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def strip_url(url)
     old_url = url.split('/')
@@ -109,7 +112,7 @@ class LinkedinJson < Kimurai::Base
       # browser.save_screenshot
       browser.find(:css, 'button.btn__primary--large').click
       sleep 1
-      browser.save_screenshot
+      # browser.save_screenshot
     rescue Capybara::ElementNotFound
       puts 'user is logged in'
     end

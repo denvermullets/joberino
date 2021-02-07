@@ -9,9 +9,12 @@
             = file_field_tag 'json'
             = submit_tag 'Submit'
 
-      - if job_count && user_count
-        %br
+        - if job_count && all_users
+          %br
 
-        %p= "Jobs listed: #{job_count}"
-        %p= "Users: #{user_count}"
+          %p= "Jobs listed: #{job_count}"
+          %p= "Users: #{all_users.count}"
+          - all_users.each do |user|
+            = "#{user.id} - #{user.email} - #{user.created_at.in_time_zone('EST').strftime("%B %d, %Y")}"
+            %br
     %div.col
