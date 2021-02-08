@@ -11,4 +11,12 @@ class JobListingsController < ApplicationController
 
     render :index, locals: { all_jobs: filtered_jobs, job_count: JobListing.weekly.count }
   end
+
+  def all_jobs
+    ignored_jobs = UserJobListing.ignored_jobs(current_user.id).map { |job| job.job_listing.id }
+    filtered_jobs = JobListing.all_jobs.select { |h| ignored_jobs.exclude? h.id }
+
+    # binding.pry
+    render :all_jobs, locals: { all_jobs: filtered_jobs, job_count: JobListing.count }
+  end
 end

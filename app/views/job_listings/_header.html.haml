@@ -2,6 +2,8 @@
   = link_to 'Joberino', root_path, class: 'navbar-brand'
   %div.navbar-nav
     - if user_signed_in?
+      = link_to 'This week', root_path, class: 'navbar-item nav-link'
+      = link_to 'All Jobs', all_joberinos_path, class: 'navbar-item nav-link'
       = link_to 'Applied', applied_jobs_path, class: 'navbar-item nav-link'
 
     - if current_user && current_user.id == 1
