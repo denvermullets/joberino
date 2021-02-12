@@ -38,7 +38,7 @@ class BuiltInNyc < Kimurai::Base
   # rubocop:disable Metrics/AbcSize
   def scrape_page
     skip_list = %w[senior sr lead manager director vp president principal architect devops firmware forklift warehouse]
-    sleep 3 # let vue page load
+    sleep 5 # let vue page load
     doc = browser.current_response
 
     while doc.css('div.job-item')[0]

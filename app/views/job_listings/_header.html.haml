@@ -1,18 +1,21 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark
   = link_to 'Joberino', root_path, class: 'navbar-brand'
-  %div.navbar-nav
-    - if user_signed_in?
-      = link_to 'This week', root_path, class: 'navbar-item nav-link'
-      = link_to 'All Jobs', all_joberinos_path, class: 'navbar-item nav-link'
-      = link_to 'Applied', applied_jobs_path, class: 'navbar-item nav-link'
-
-    - if current_user && current_user.id == 1
-      = link_to 'Upload json', upload_path, class: 'navbar-item nav-link'
-  %div.navbar-nav.ml-auto
-    = link_to 'About', about_index_path, class: 'navbar-item nav-link'
-    = link_to 'Changelog', changelog_path, class: 'navbar-item nav-link'
-    - if user_signed_in?
-      = link_to 'Sign out', destroy_user_session_path, class: 'navbar-item nav-link', method: :delete
-    - else
-      = link_to 'Sign in', new_user_session_path, class: 'navbar-item nav-link'
-      = link_to 'Sign up', new_user_registration_path, class: 'navbar-item nav-link'
+  %button.navbar-toggler{ type: 'button', data: { toggle: 'collapse', target: '#navbarNavAltMarkup' } }
+    %span.navbar-toggler-icon
+  %div.collapse.navbar-collapse{ id: "navbarNavAltMarkup" }
+    %div.navbar-nav
+      - if user_signed_in?
+        = link_to 'This week', root_path, class: 'navbar-item nav-link'
+        = link_to 'All Jobs', all_joberinos_path, class: 'navbar-item nav-link'
+        = link_to 'Applied', applied_jobs_path, class: 'navbar-item nav-link'
+        = link_to 'Top Skills', top_skills_path, class: 'navbar-item nav-link'
+      - if current_user && current_user.id == 1
+        = link_to 'Upload json', upload_path, class: 'navbar-item nav-link'
+    %div.navbar-nav.ml-auto
+      = link_to 'About', about_index_path, class: 'navbar-item nav-link'
+      = link_to 'Changelog', changelog_path, class: 'navbar-item nav-link'
+      - if user_signed_in?
+        = link_to 'Sign out', destroy_user_session_path, class: 'navbar-item nav-link', method: :delete
+      - else
+        = link_to 'Sign in', new_user_session_path, class: 'navbar-item nav-link'
+        = link_to 'Sign up', new_user_registration_path, class: 'navbar-item nav-link'
