@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_140629) do
+ActiveRecord::Schema.define(version: 2021_02_24_135947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_01_31_140629) do
     t.string "salary"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "scrape_time"
   end
 
   create_table "user_job_listings", force: :cascade do |t|

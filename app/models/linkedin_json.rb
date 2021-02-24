@@ -86,11 +86,14 @@ class LinkedinJson < Kimurai::Base
       company_url: "https://linkedin.com#{single_job.css('a.job-card-container__company-name').attribute('href')}",
       job_board: 'linkedin',
       job_url: strip_url("https://linkedin.com#{single_job.css('a.job-card-list__title').attribute('href')}"),
-      salary: nil
+      salary: nil,
+      geo_id: '90000070',
+      scrape_time: Time.now
     }
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+  # t.integer "geo_id"
 
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
   def strip_url(url)
     # strips linkedin excess url noise
     old_url = url.split('/')
