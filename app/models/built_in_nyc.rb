@@ -66,7 +66,8 @@ class BuiltInNyc < Kimurai::Base
       company_url: nil,
       job_board: 'builtinnyc',
       job_url: single_job.css('a.job-row').attribute('href'),
-      salary: nil
+      salary: nil,
+      geo_id: '90000070'
     }
   end
   # rubocop:enable Metrics/AbcSize
