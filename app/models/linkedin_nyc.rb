@@ -1,5 +1,5 @@
 # scrapes linkedin
-class LinkedinJson < Kimurai::Base
+class LinkedinNyc < Kimurai::Base
   @name = 'whatsnew'
   @engine = :selenium_chrome
   @@jobs = []
@@ -87,13 +87,10 @@ class LinkedinJson < Kimurai::Base
       job_board: 'linkedin',
       job_url: strip_url("https://linkedin.com#{single_job.css('a.job-card-list__title').attribute('href')}"),
       salary: nil,
-      geo_id: '90000070',
-      scrape_time: Time.now
+      geo_id: '90000070'
     }
   end
-  # t.integer "geo_id"
 
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
   def strip_url(url)
     # strips linkedin excess url noise
     old_url = url.split('/')
@@ -104,21 +101,17 @@ class LinkedinJson < Kimurai::Base
   def check_if_logged_in
     sleep 2
     begin
-      # puts "URL? - #{browser.current_url}"
       # browser.find(:css, 'a.nav__button-secondary').click
       browser.find(:css, 'a.cta-modal__primary-btn').click
       sleep 1
-      # browser.save_screenshot
-      # puts "URL? - #{browser.current_url}"
       browser.fill_in 'session_key', with: ENV['EMAIL']
       browser.fill_in 'session_password', with: ENV['PASSWORD']
       sleep 2
-      # browser.save_screenshot
       browser.find(:css, 'button.btn__primary--large').click
       sleep 1
-      # browser.save_screenshot
     rescue Capybara::ElementNotFound
       puts 'user is logged in'
     end
   end
 end
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength
