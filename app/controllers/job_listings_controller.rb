@@ -24,6 +24,6 @@ class JobListingsController < ApplicationController
     ignored_jobs = UserJobListing.ignored_weekly(current_user.id).map { |job| job.job_listing.id }
     filtered_jobs = JobListing.weekly_seattle.select { |h| ignored_jobs.exclude? h.id }
 
-    render :seattle, locals: { all_jobs: filtered_jobs, job_count: JobListing.weekly.count }
+    render :seattle, locals: { all_jobs: filtered_jobs, job_count: JobListing.weekly_seattle.count }
   end
 end
