@@ -25,5 +25,5 @@
               %strong Users
             - all_users.each do |user|
               %li.list-group-item.d-flex.justify-content-between.align-items-center
-                = "#{user.id} - #{user.email} - #{user.last_sign_in_at.in_time_zone('EST').strftime("%B %d, %Y")}"
+                = "#{user.id} - #{user.email} - #{user.last_sign_in_at}"
     %div.col
