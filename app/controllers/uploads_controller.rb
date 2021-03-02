@@ -14,7 +14,7 @@ class UploadsController < ApplicationController
     jobs = JSON.parse(File.read(uploaded_io))
     jobs.map { |job| JobListing.create(job) }
 
-    users = User.all.order(last_sign_in_at: :desc)
+    users = User.all.order(last_sign_in_at: :asc)
 
     render :new_jobs, locals: {
       job_count: JobListing.count, week_count: JobListing.weekly.count,
