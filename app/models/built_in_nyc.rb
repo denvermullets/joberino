@@ -38,18 +38,25 @@ class BuiltInNyc < Kimurai::Base
   # rubocop:disable Metrics/AbcSize
   def scrape_page
     skip_list = %w[senior sr lead manager director vp president principal architect devops firmware forklift warehouse]
-    sleep 5 # let vue page load
+    sleep 7 # let vue page load
     doc = browser.current_response
 
+    # we're removing the div that contains the job filtering stuff since it's preventing the page to move
+    # when we delete the job compoenent that triggers the next jobs which are vue lazy-load components
+    browser.execute_script("document.querySelector('div.block-jobs-facets').remove()")
+
     while doc.css('div.job-item')[0]
+      # browser.save_screenshot
       doc = browser.current_response
       job = strip_info(doc)
+
       if skip_list.any? { |single_word| job[:job_title].downcase.include? single_word }
         puts "skipping #{job[:job_title]}"
       else
         @@jobs << job
         puts "adding #{job[:job_title]}"
       end
+
       doc.css('div.job-item')[0].remove
       browser.execute_script("document.querySelector('div.job-item').remove()")
       sleep 0.1
