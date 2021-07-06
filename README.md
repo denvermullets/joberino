@@ -17,3 +17,7 @@ Please feel free to make PR's since I think there are areas my code can be impro
 ## Installation
 
 This is built using `Ruby 2.7.2` and `Rails 6.1.1`. Please make sure you're using at least those versions of Ruby / Rails. Bundle install should take care of you for the rest though.
+
+## Errors
+
+If chromium becomes out of date you just need to run `brew upgrade --cask` - or at least I do!
