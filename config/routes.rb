@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   get '/all-jobs', to: 'job_listings#all_jobs', as: :all_joberinos
   get '/seattle', to: 'job_listings#seattle_jobs', as: :seattle_jobs
   resources :users
+
+  namespace :api do
+    namespace :v1 do
+      resources :job_listings
+    end
+  end
 end

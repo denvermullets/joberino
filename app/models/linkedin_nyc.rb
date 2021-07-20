@@ -49,8 +49,8 @@ class LinkedinNyc < Kimurai::Base
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def scrape_page
     skip_list = %w[
-      senior sr lead manager director vp president principal architect devops firmware forklift warehouse
-      head
+      senior sr lead manager director vp president principal architect devops firmware forklift
+      warehouse iii ii staff salesforce test ops c++ consulting contract head
     ]
     check_if_logged_in
     doc = browser.current_response
