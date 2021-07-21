@@ -54,11 +54,18 @@ class BuiltInNyc < Kimurai::Base
       doc = browser.current_response
       job = strip_info(doc)
 
+      options = {
+        body: job.to_json,
+        headers: { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
+      }
+
       if skip_list.any? { |single_word| job[:job_title].downcase.include? single_word }
         puts "skipping #{job[:job_title]}"
       else
         @@jobs << job
         puts "adding #{job[:job_title]}"
+        post_req = HTTParty.post('https://joberino.dev/api/v1/job_listings', options)
+        puts "This POST request was #{post_req.success?}"
       end
 
       doc.css('div.job-item')[0].remove

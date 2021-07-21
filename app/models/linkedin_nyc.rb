@@ -61,11 +61,19 @@ class LinkedinNyc < Kimurai::Base
     while doc.css('li.jobs-search-results__list-item')[0]
       doc = browser.current_response
       job = strip_info(doc)
+
+      options = {
+        body: job.to_json,
+        headers: { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
+      }
+
       if skip_list.any? { |single_word| job[:job_title].downcase.include? single_word }
         puts "skipping #{job[:job_title]}"
       else
         @@jobs << strip_info(doc)
         puts "adding #{job[:job_title]}"
+        post_req = HTTParty.post('https://joberino.dev/api/v1/job_listings', options)
+        puts "This POST request was #{post_req.success?}"
       end
       job_listings = doc.css('ul.jobs-search-results__list')
       job_listings.css('li.jobs-search-results__list-item')[0].remove
