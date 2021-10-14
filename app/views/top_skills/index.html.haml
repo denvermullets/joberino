@@ -2,7 +2,12 @@
   %div.row
     %div.col-10.container-fluid
       %br
-      = column_chart jobs.group_by_week(:created_at, format: "%a").count
+      = jobs.count
+      = column_chart jobs.group_by_week(:created_at).count
+      = column_chart jobs.group_by_month(:created_at).count
+      = line_chart jobs.group_by_week(:created_at).count
+      = line_chart jobs.group_by_month(:created_at).count
+  %div.row
   %div.row
     %div.col
     %div.col-8
