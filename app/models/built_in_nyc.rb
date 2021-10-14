@@ -83,7 +83,7 @@ class BuiltInNyc < Kimurai::Base
       location: 'Greater NYC area',
       company_url: nil,
       job_board: 'builtinnyc',
-      job_url: single_job.css('a.job-row').attribute('href'),
+      job_url: single_job.css('a.job-row').attribute('href').value,
       salary: nil,
       geo_id: '90000070'
     }

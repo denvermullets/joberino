@@ -9,7 +9,7 @@ module Api
         new_job = JobListing.create(job_listing_params)
 
         if new_job.persisted?
-          render json: {}, status: 200
+          render json: { 'id' => new_job.id }, status: 200
         else
           render json: {}, status: 400
         end
