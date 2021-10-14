@@ -1,5 +1,9 @@
 %div.container
   %div.row
+    %div.col-10.container-fluid
+      %br
+      = column_chart jobs.group_by_week(:created_at, format: "%a").count
+  %div.row
     %div.col
     %div.col-8
       %br
